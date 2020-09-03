@@ -11,7 +11,7 @@
     {% for i in all_items %}
     <li>{{i.name}}  {{i.link}}
     </li>
-    <form action="/deleteResource/{{i.id}}/" method = "post">{% csrf_token %}
+    <form action="/delResource/{{i.id}}/" method = "post">{% csrf_token %}
         <input type="submit" value="Delete">
     </form>
     {% endfor %}

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Journal.views import resources, addPage, addResource
+from Journal.views import resources, addPage, addResource, delResource
 
 
 urlpatterns = [
@@ -23,4 +23,5 @@ urlpatterns = [
     path('', resources),
     path('add/', addPage),
     path('addResource/', addResource),
+    path('delResource/<int:i>/', delResource),
 ]
