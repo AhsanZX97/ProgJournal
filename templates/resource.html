@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Journal</title>
+</head>
+<body>
+<h1> Resources </h1>
+<a href="/add">Add Resource</a>
+<ul>
+    {% for i in all_items %}
+    <li>{{i.content}}
+    </li>
+    <form action="/deleteResource/{{i.id}}/" method = "post">{% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+    {% endfor %}
+</ul>
+</body>
+</html>

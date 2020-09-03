@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a resource</title>
+</head>
+<body>
+
+<form action="/addResource/" method = "post">{% csrf_token %}
+    <input type="text" name="name">
+    <input type="text" name="link">
+    <input type="submit" value="Add Resource">
+</form>
+
+</body>
+</html>
