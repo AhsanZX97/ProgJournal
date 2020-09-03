@@ -9,7 +9,7 @@
 <a href="/add">Add Resource</a>
 <ul>
     {% for i in all_items %}
-    <li>{{i.content}}
+    <li>{{i.name}}  {{i.link}}
     </li>
     <form action="/deleteResource/{{i.id}}/" method = "post">{% csrf_token %}
         <input type="submit" value="Delete">
