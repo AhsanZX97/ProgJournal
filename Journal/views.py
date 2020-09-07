@@ -8,14 +8,39 @@ def resources(request):
     return render(request, 'resource.html',
     {'all_items':all_todo_items})
 
-def addPage(request):
-    return render(request, 'add.html')
+def addPage(request,i = 0):
+    if i > 0:
+        res = resource.objects.get(id=i)
+        return render(request, 'add.html',{'res':res})
+    else:
+        return render(request, 'add.html',{'res':False})
 
-def addResource(request):
-    n = request.POST['name']
-    l = request.POST['link']
-    new_item = resource(name = n, link = l)
-    new_item.save()
+def editResource(request,i = 0):
+    print("FIRST LINE")
+    n = request.POST['editname']
+    l = request.POST['editlink']
+    item = resource.objects.get(id=i)
+    print("RESOURCE IS:  " + str(l))
+    item.name = n
+    item.link = l
+    item.save()
+    return HttpResponseRedirect('/')
+
+def addResource(request,i = 0):
+    if i > 0:
+        print("FIRST LINE")
+        n = request.POST['editname']
+        l = request.POST['editlink']
+        item = resource.objects.get(id=i)
+        print("RESOURCE IS:  " + str(l))
+        item.name = n
+        item.link = l
+        item.save()
+    else:
+        n = request.POST['name']
+        l = request.POST['link']
+        new_item = resource(name = n, link = l)
+        new_item.save()
     return HttpResponseRedirect('/')
 
 def delResource(request, i):

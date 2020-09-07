@@ -22,6 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', resources),
     path('add/', addPage),
+    path('add/<int:i>/', addPage),
     path('addResource/', addResource),
+    path('addResource/<int:i>/', addResource),
     path('delResource/<int:i>/', delResource),
 ]

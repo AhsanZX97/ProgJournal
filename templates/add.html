@@ -5,12 +5,24 @@
     <title>Add a resource</title>
 </head>
 <body>
+{% if res %}
 
-<form action="/addResource/" method = "post">{% csrf_token %}
-    <input type="text" name="name">
-    <input type="text" name="link">
-    <input type="submit" value="Add Resource" id="submit">
-</form>
+    <form action="/addResource/{{res.id}}/" method = "post">{% csrf_token %}
+        <input type="text" name="editname" value="{{ res.name }}">
+        <input type="text" name="editlink" value="{{ res.link }}">
+        <input type="submit" value="Update Resource" id="submit">
+    </form>
+
+{% else %}
+
+    <form action="/addResource/" method = "post">{% csrf_token %}
+        <input type="text" name="name">
+        <input type="text" name="link">
+        <input type="submit" value="Add Resource" id="submit">
+    </form>
+
+{% endif %}
+
 
 </body>
 </html>

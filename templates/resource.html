@@ -7,26 +7,25 @@
 <body>
 <h1> Resources </h1>
 <a href="/add" id="add">Add Resource</a>
-<form action="/addResource/" method = "post">{% csrf_token %}
-    <input type="text" name="name">
-    <input type="text" name="link">
-    <input type="submit" value="Add Resource" id="submit">
-</form>
 <table>
     <tr>
         <th>Name</th>
         <th>Url</th>
         <th>Delete</th>
+        <th>Edit</th>
     </tr>
 
     {% for i in all_items %}
     <tr>
-        <td class="{{i.name}}">{{i.name}}</td>
+        <td class="{{i.id}}">{{i.name}}</td>
         <td>{{i.link}}</td>
         <td>
             <form action="/delResource/{{i.id}}/" method = "post">{% csrf_token %}
                 <input type="submit" value="Delete" class="del{{i.name}}">
             </form>
+        </td>
+        <td>
+            <a href="/add/{{i.id}}" id="edit{{i.id}}">Edit</a>
         </td>
     </tr>
     {% endfor %}
