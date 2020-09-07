@@ -7,8 +7,11 @@
 <body>
 <h1> Resources </h1>
 <a href="/add" id="add">Add Resource</a>
-<ul>
-</ul>
+<form action="/addResource/" method = "post">{% csrf_token %}
+    <input type="text" name="name">
+    <input type="text" name="link">
+    <input type="submit" value="Add Resource" id="submit">
+</form>
 <table>
     <tr>
         <th>Name</th>
@@ -22,7 +25,7 @@
         <td>{{i.link}}</td>
         <td>
             <form action="/delResource/{{i.id}}/" method = "post">{% csrf_token %}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" class="del{{i.name}}">
             </form>
         </td>
     </tr>

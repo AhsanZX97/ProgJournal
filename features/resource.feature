@@ -8,5 +8,4 @@ Feature: Resource function
 
   Scenario: I want to create a resource
     Given i'm on the home page
-    When I delete the resource named 'Google'
-    Then I should see the resource added to the home page
+    Then I delete a resource and see the list shorten

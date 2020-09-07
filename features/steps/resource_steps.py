@@ -30,3 +30,11 @@ def step_impl(context):
 def step_impl(context):
     result = context.browser.find_element_by_class_name('Google')
     assert 'Google' == result.text
+
+@then(u'I delete a resource and see the list shorten')
+def step_impl(context):
+    allRes = len(context.browser.find_elements_by_tag_name('tr')) - 1
+    deleteButton = context.browser.find_element_by_class_name('delGoogle')
+    deleteButton.click()
+    newAllRes = len(context.browser.find_elements_by_tag_name('tr')) - 1
+    assert allRes - 1 == newAllRes
