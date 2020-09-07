@@ -6,15 +6,27 @@
 </head>
 <body>
 <h1> Resources </h1>
-<a href="/add">Add Resource</a>
+<a href="/add" id="add">Add Resource</a>
 <ul>
-    {% for i in all_items %}
-    <li>{{i.name}}  {{i.link}}
-    </li>
-    <form action="/delResource/{{i.id}}/" method = "post">{% csrf_token %}
-        <input type="submit" value="Delete">
-    </form>
-    {% endfor %}
 </ul>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Url</th>
+        <th>Delete</th>
+    </tr>
+
+    {% for i in all_items %}
+    <tr>
+        <td class="{{i.name}}">{{i.name}}</td>
+        <td>{{i.link}}</td>
+        <td>
+            <form action="/delResource/{{i.id}}/" method = "post">{% csrf_token %}
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 </body>
 </html>
