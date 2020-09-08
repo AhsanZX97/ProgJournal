@@ -16,11 +16,9 @@ def addPage(request,i = 0):
         return render(request, 'add.html',{'res':False})
 
 def editResource(request,i = 0):
-    print("FIRST LINE")
     n = request.POST['editname']
     l = request.POST['editlink']
     item = resource.objects.get(id=i)
-    print("RESOURCE IS:  " + str(l))
     item.name = n
     item.link = l
     item.save()
