@@ -14,10 +14,10 @@ def step_impl(context):
 
 @when(u'I fill out the form')
 def step_impl(context):
-    name = context.browser.find_element_by_xpath('/html/body/form/input[2]')
-    name.send_keys('Google')
-    url = context.browser.find_element_by_xpath('/html/body/form/input[3]')
-    url.send_keys('www.google.com')
+    name = context.browser.find_element_by_xpath('/html/body/div/form/div/div[1]/input')
+    name.send_keys('Django')
+    url = context.browser.find_element_by_xpath('/html/body/div/form/div/div[2]/input')
+    url.send_keys('https://docs.djangoproject.com/en/3.1/')
 
 
 @when(u'Click Submit')
@@ -28,13 +28,29 @@ def step_impl(context):
 
 @then(u'I should see the resource added to the home page')
 def step_impl(context):
-    result = context.browser.find_element_by_class_name('Google')
-    assert 'Google' == result.text
+    result = context.browser.find_element_by_class_name('Django')
+    assert 'Django' == result.text
 
 @then(u'I delete a resource and see the list shorten')
 def step_impl(context):
     allRes = len(context.browser.find_elements_by_tag_name('tr')) - 1
-    deleteButton = context.browser.find_element_by_class_name('delGoogle')
+    deleteButton = context.browser.find_element_by_class_name('delDjango')
     deleteButton.click()
     newAllRes = len(context.browser.find_elements_by_tag_name('tr')) - 1
     assert allRes - 1 == newAllRes
+
+@when(u'I click the edit button on a resource')
+def step_impl(context):
+    editButton = context.browser.find_element_by_class_name('editDjango')
+    editButton.click()
+
+
+@when(u'I change the form values')
+def step_impl(context):
+    url = context.browser.find_element_by_xpath('/html/body/div/form/div/div[2]/input')
+    url.send_keys('https://django-docs.readthedocs.io/en/latest/')
+
+
+@then(u'I should see the resource has changed')
+def step_impl(context):
+    assert 'https://django-docs.readthedocs.io/en/latest/' in context.browser.page_source
