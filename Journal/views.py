@@ -1,6 +1,8 @@
+from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from Journal.models import resource
+
 
 # Create your views here.
 def resources(request):
@@ -15,15 +17,6 @@ def addPage(request,i = 0):
     else:
         return render(request, 'add.html',{'res':False})
 
-def editResource(request,i = 0):
-    n = request.POST['editname']
-    l = request.POST['editlink']
-    item = resource.objects.get(id=i)
-    item.name = n
-    item.link = l
-    item.save()
-    return HttpResponseRedirect('/')
-
 def addResource(request,i = 0):
     if i > 0:
         n = request.POST['editname']
@@ -35,7 +28,11 @@ def addResource(request,i = 0):
     else:
         n = request.POST['name']
         l = request.POST['link']
-        new_item = resource(name = n, link = l)
+        f = request.FILES['file']
+        fs = FileSystemStorage()
+        fs.save(f.name, f)
+        print(fs.url(f.name))
+        new_item = resource(name = n, link = l,image= f)
         new_item.save()
     return HttpResponseRedirect('/')
 

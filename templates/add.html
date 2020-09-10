@@ -22,6 +22,7 @@
             <div class="form-group">
                 <input type="url" name="editlink" value="{{ res.link }}" class="form-control">
             </div>
+
             <div class="form-group"  id="submit">
                 <input type="submit" value="Update Resource" class="btn btn-primary btn-lg">
             </div>
@@ -31,13 +32,17 @@
 {% else %}
 
     <h1> Add Resource </h1>
-    <form action="/addResource/" method = "post">{% csrf_token %}
+    <form action="/addResource/" method = "post" enctype="multipart/form-data">{% csrf_token %}
         <div class="formDiv">
             <div class="form-group">
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group">
                 <input type="text" name="link" class="form-control">
+            </div>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile" name="file">
+              <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
             <div class="form-group"  id="submit">
                 <input type="submit" value="Add Resource" class="btn btn-primary btn-lg">
