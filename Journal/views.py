@@ -21,17 +21,24 @@ def addResource(request,i = 0):
     if i > 0:
         n = request.POST['editname']
         l = request.POST['editlink']
+        f = request.FILES['editfile']
+        fs = FileSystemStorage()
+        fs.save(f.name, f)
         item = resource.objects.get(id=i)
         item.name = n
         item.link = l
+        item.image = f
         item.save()
     else:
         n = request.POST['name']
         l = request.POST['link']
-        f = request.FILES['file']
         fs = FileSystemStorage()
-        fs.save(f.name, f)
-        print(fs.url(f.name))
+        f = None
+        try:
+            f = request.FILES['file']
+            fs.save(f.name, f)
+        except:
+            pass
         new_item = resource(name = n, link = l,image= f)
         new_item.save()
     return HttpResponseRedirect('/')
