@@ -1,5 +1,10 @@
-from django.test import TestCase
+from django.core.handlers.wsgi import WSGIRequest
+from django.test import TestCase, Client
 from .models import resource
+from django.test.client import RequestFactory
+from .views import resources, addPage
+from django.urls import reverse, resolve
+
 
 # Create your tests here.
 class ResourceTest(TestCase):
@@ -47,3 +52,27 @@ class ResourceTest(TestCase):
         test = resource.objects.get(id = 1)
         self.assertEqual(test.name, "Youtube")
         self.assertEqual(test.link, "www.youtube.com")
+
+class urlTest(TestCase):
+
+    def test_homePage(self):
+        url = reverse('home')
+        self.assertEqual(resolve(url).func, resources)
+
+    def test_addPage(self):
+        url = reverse('add')
+        self.assertEqual(resolve(url).func, addPage)
+
+class viewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_homePage(self):
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response,'resource.html')
+
+    def test_addPage(self):
+        response = self.client.get(reverse('add'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'add.html')

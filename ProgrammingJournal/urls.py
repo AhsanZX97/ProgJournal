@@ -20,10 +20,10 @@ from Journal.views import resources, addPage, addResource, delResource
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', resources),
-    path('add/', addPage),
-    path('add/<int:i>/', addPage),
-    path('addResource/', addResource),
-    path('addResource/<int:i>/', addResource),
-    path('delResource/<int:i>/', delResource),
+    path('', resources, name="home"),
+    path('add/', addPage, name="add"),
+    path('add/<int:i>/', addPage, name="edit"),
+    path('addResource/', addResource, name="addRes"),
+    path('addResource/<int:i>/', addResource, name="editRes"),
+    path('delResource/<int:i>/', delResource, name="delRes"),
 ]
