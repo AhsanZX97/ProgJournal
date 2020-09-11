@@ -1,0 +1,67 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+    background: #4d244e;
+    font-family: sans-serif;
+    border-top: 5px solid #aa8e8d;
+}
+
+h1{
+      color: #aa8e8d;
+      text-align: center;
+      font-size: 32px;
+      font-weight: 900;
+}
+
+#buttondiv{
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #ae5f75 !important;
+}
+
+.resource {
+      width: 880px;
+      height: 405px;
+      position: absolute;
+      top: 20%;
+      left: 0px;
+      right: 0px;
+      margin: 0px auto;
+}
+
+th {
+    border: 1px solid red;
+}
+
+.input {
+    width: 880px;
+}
+
+.formDiv {
+    margin-top: 3em;
+}
+
+.tableDiv {
+    margin-top: 2em;
+}
+
+#submit {
+    text-align: center;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #ae5f75;
+    color: white;
+}
+.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
+    background-color: #6d335c;
+    color: #d37b79;
+}
+
+.borderless td, .borderless th {
+    border: none !important;
+}
