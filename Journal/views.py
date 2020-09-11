@@ -21,9 +21,13 @@ def addResource(request,i = 0):
     if i > 0:
         n = request.POST['editname']
         l = request.POST['editlink']
-        f = request.FILES['editfile']
         fs = FileSystemStorage()
-        fs.save(f.name, f)
+        f = None
+        try:
+            f = request.FILES['editfile']
+            fs.save(f.name, f)
+        except:
+            pass
         item = resource.objects.get(id=i)
         item.name = n
         item.link = l
